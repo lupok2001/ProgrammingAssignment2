@@ -1,6 +1,8 @@
-## These two functions caculate the inverse of a square, invertible matrix and caches the result
+## These two functions caculate the inverse of a square, invertible matrix and cache the result. If the same
+## matrix is inverted again, R returns the cached result instead of computing the result again.
 
-## Create a special matrix object, which contains the functions necessary to cache its inverse
+## MakeCacheMatirx creates a special "matrix", which  is really a list of the functions to 
+## set and get the matrix contents (set, get) and its inverse (setinverse, getinverse)
 
 makeCacheMatrix <- function(m = matrix()) {
         inv <- NULL
@@ -15,7 +17,8 @@ makeCacheMatrix <- function(m = matrix()) {
 }
 
 
-## Checks if a cached inverted matrix exists and, if not, it calculates it.
+## cacheSolve calculates the inverse of the special "matrix" created qith makeCacheMatrix.
+## If a cached inverted matrix already exists, then it gets its value from the cache instead than computing it again
 
 cacheSolve <- function(m, ...) {
         inv <- m$getinverse() 
